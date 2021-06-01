@@ -24,16 +24,13 @@ public class RubricaMain {
 		phones.add("3453095317");
 		phones.add("4325432523");
 		
-		emails.add("antonio.dauria@protom.com");
-		emails.add("tonydauria94@gmail.com");
-
 		c.setPhoneNumbers(phones);
 		c.setEmails(emails);
 		
-		//controller.addContact(c);
+		controller.addContact(c);
 		System.out.println(controller.getContactList());
 		
-		c = ContactSerializer.deserialize("name=Antonio---surname=D'Auria---phones=4325432523&&&3453095317---emails=antonio.dauria@protom.com&&&tonydauria94@gmail.com");
+		c = ContactSerializer.deserialize("name=Antonio---surname=D'Auria---phones=4325432523&&&3453095317---emails=");
 		System.out.println(c);
 	}
 

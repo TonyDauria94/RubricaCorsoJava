@@ -51,8 +51,8 @@ public abstract class ContactSerializer {
 		c.setName(values[0].replace("name=", ""));
 		c.setSurname(values[1].replace("surname=", ""));
 
-		String phones[]= values[2].split("&&&");
-		String emails[]= values[3].split("&&&");
+		String phones[]= values[2].replace("phones=", "").split("&&&");
+		String emails[]= values[3].replace("emails=", "").split("&&&");
 		
 		for (String phone : phones) {
 			c.addPhone(phone);
