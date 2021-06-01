@@ -26,7 +26,7 @@ public class ContactDAOImpl extends AbstractDAO<Contact> implements ContactDAO {
 		
 		try {
 		    BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
-			writer.append(t.serialize());	
+			writer.append(ContactSerializer.serialize(t));	
 			writer.close();
 			
 		} catch (IOException e) {

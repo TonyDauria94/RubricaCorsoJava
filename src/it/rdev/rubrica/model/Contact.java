@@ -94,11 +94,5 @@ public class Contact {
 		return "Contact [id=" + id + ", name=" + name + ", surname=" + surname + ", phoneNumbers=" + phoneNumbers
 				+ ", emails=" + emails + "]";
 	}
-	
-	public String serialize() {
-		return "id=" + id + ", name=" + name + ", surname=" + surname 
-				+ ", phoneNumbers=" + phoneNumbers
-				+ ", emails=" + emails + "\n";
-	}
-	
+
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.rdev.rubrica.controller.RubricaController;
 import it.rdev.rubrica.model.Contact;
+import it.rdev.rubrica.model.impl.file.ContactSerializer;
 
 public class RubricaMain {
 
@@ -29,10 +30,11 @@ public class RubricaMain {
 		c.setPhoneNumbers(phones);
 		c.setEmails(emails);
 		
-		
+		//controller.addContact(c);
 		System.out.println(controller.getContactList());
 		
-		
+		c = ContactSerializer.deserialize("name=Antonio---surname=D'Auria---phones=4325432523&&&3453095317---emails=antonio.dauria@protom.com&&&tonydauria94@gmail.com");
+		System.out.println(c);
 	}
 
 }
