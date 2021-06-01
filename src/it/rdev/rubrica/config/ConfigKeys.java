@@ -3,6 +3,8 @@ package it.rdev.rubrica.config;
 public enum ConfigKeys {
 	
 	APP_NAME("app-name"),
+	PERSISTENCE("app.persistence"),
+	FILE_PATH("app.file.path"),
 	DB_HOST("app.db.host"),
 	DB_PORT("app.db.port"),
 	DB_NAME("app.db.name"),
