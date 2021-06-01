@@ -17,13 +17,29 @@ public class ContactDAOImpl extends AbstractDAO<Contact> implements ContactDAO {
 	public List<Contact> getAll() {
 		List<Contact> contacts = new ArrayList<>();
 		try {
-			ResultSet rs = this.executeQuery("SELECT id, name, surname FROM " + TABLE_CONTACTS);
+			ResultSet rs = this.executeQuery("SELECT c.id, c.name, c.surname, e.email AS email, pn.phone AS phone " +
+					"FROM " + TABLE_CONTACTS + " c LEFT JOIN "+ TABLE_EMAILS +" e ON c.id = e.contact_id " +
+					"LEFT JOIN " + TABLE_PHONES + " pn ON c.id = pn.contact_id" );
 			while(rs.next()) {
-				contacts.add(
-						new Contact()
-						.setId(rs.getInt("id"))
-						.setName(rs.getString("name"))
-						.setSurname(rs.getString("surname")));
+				Contact c = new Contact()
+						.setId(rs.getInt("id"));
+				
+				// Se il contatto è già in lista allora lo recupero
+				if( contacts.contains(c) ) {
+					c = contacts.get( contacts.indexOf(c) );
+				} else {
+					// Altrimenti si tratta di un nuovo contatto e lo aggiungo alla lista.
+					c.setName(rs.getString("name"))
+					.setSurname(rs.getString("surname"));
+					contacts.add(c);
+				}
+				
+				// imposto le informazioni di emails e numeri di telefono. Non mi preoccupo dei duplicati
+				// perché ho utilizzato dei TreeSet
+				if( rs.getString("email") != null )
+					c.addEmail(rs.getString("email"));
+				if( rs.getString("phone") != null )
+					c.addPhone(rs.getString("phone"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,7 +88,6 @@ public class ContactDAOImpl extends AbstractDAO<Contact> implements ContactDAO {
 							+ " WHERE id=?;", t.getName(), t.getSurname(), t.getId());
 		
 		// elimino dal db tutte le email e i telefoni per poi reinserirli.
-		// TODO meccanismo da migliorare...
 		this.executeUpdate("DELETE FROM " + TABLE_EMAILS + " WHERE contact_id=?", t.getId());
 
 		this.executeUpdate("DELETE FROM " + TABLE_PHONES + " WHERE contact_id=?", t.getId());
