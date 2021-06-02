@@ -1,7 +1,7 @@
 package it.rdev.rubrica.model;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Contact {
 
@@ -37,7 +37,7 @@ public class Contact {
 	}
 	public Contact addPhone(String phoneNumber) {
 		if (this.phoneNumbers == null)
-			this.phoneNumbers = new HashSet<>();
+			this.phoneNumbers = new TreeSet<>();
 		
 		this.phoneNumbers.add(phoneNumber);
 		return this;
@@ -51,7 +51,7 @@ public class Contact {
 	}
 	public Contact addEmail(String email) {
 		if (this.emails == null)
-			this.emails = new HashSet<>();
+			this.emails = new TreeSet<>();
 		
 		this.emails.add(email);
 		return this;

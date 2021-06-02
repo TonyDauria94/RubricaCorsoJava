@@ -1,6 +1,12 @@
 package it.rdev.rubrica.model.impl.file;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import it.rdev.rubrica.config.ConfigKeys;
 import it.rdev.rubrica.config.Configuration;
@@ -18,21 +24,28 @@ private static DataSource ds;
 	
 	private File file;
 	
-	private DataSource() {
-		try {
-			file = new File(Configuration.getInstance().getValue(ConfigKeys.FILE_PATH));
-			
-			// se il file non esiste viene creato
-			file.createNewFile();
+	private DataSource()  {
+	
+		file = new File(Configuration.getInstance().getValue(ConfigKeys.FILE_PATH));
 		
-		} catch (Exception e) {
-
+		// Se il file non esiste viene creato
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+	
 	}
 	
-	public File getFile() {
-		return file;
+	public BufferedReader getReader() throws FileNotFoundException {
+		return new BufferedReader(new FileReader(file));
 	}
 	
+	public BufferedWriter getWriter(boolean append) throws IOException {
+		return new BufferedWriter(new FileWriter(file, append));
+	}
 
 }
