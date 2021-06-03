@@ -71,9 +71,7 @@ public class ContactDAOImpl extends AbstractDAO<Contact> implements ContactDAO {
 		
 		// Se la dimensione della lista contatti è inferiore all'id del contatto passato,
 		// allora posso procedere con l'eliminazione del contatto nella posizione corrispondente all'ID.
-		// Per sicurezza controllo anche se il contatto in lista e quello in input hanno lo stesso ID, 
-		// questa clausola dovrebbe restituire sempre true, in quanto l'accesso al file non è multi-utente.
-		if (contacts.size() > t.getId() && t.equals(contacts.get(t.getId()))) {
+		if (contacts.size() > t.getId()) {
 			
 			contacts.remove((int) t.getId());
 			
@@ -99,9 +97,7 @@ public class ContactDAOImpl extends AbstractDAO<Contact> implements ContactDAO {
 		
 		// Se la dimensione della lista contatti è inferiore all'id del contatto passato,
 		// allora posso procedere con l'update del contatto nella posizione corrispondente all'ID.
-		// Per sicurezza controllo anche se il contatto in lista e quello in input hanno lo stesso ID, 
-		// questa clausola dovrebbe restituire sempre true, in quanto l'accesso al file non è multi-utente.
-		if (contacts.size() > t.getId() && t.equals(contacts.get(t.getId()))) {
+		if (contacts.size() > t.getId()) {
 			
 			// Utilizzo il metodo set per sovrascrivere il contatto e fare quindi l'update
 			contacts.set(t.getId(), t);

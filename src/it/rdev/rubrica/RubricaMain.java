@@ -21,7 +21,7 @@ public class RubricaMain {
 		c.addEmail("tonydauria94@gmail.com");
 		c.addEmail("antoniodauriadev@gmail.com");
 		
-		// controller.addContact(c);
+		controller.addContact(c);
 		
 		c = new Contact();
 		
@@ -32,7 +32,7 @@ public class RubricaMain {
 		
 		c.addEmail("nicola@ferrara.com");
 		
-		//controller.addContact(c);
+		controller.addContact(c);
 		
 		c = new Contact();
 		
@@ -43,7 +43,7 @@ public class RubricaMain {
 		
 		c.addEmail("Mario@Rossi.com");
 		
-		//controller.addContact(c);
+		controller.addContact(c);
 		
 		System.out.println(controller.getContactList());
 
